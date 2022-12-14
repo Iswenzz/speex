@@ -43,3 +43,5 @@ src/speexdec
 src/speexenc
 stamp-*
 patches
+build/*
+build_linux/*
