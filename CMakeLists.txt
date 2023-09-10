@@ -17,3 +17,7 @@ file(GLOB_RECURSE SPEEX_HEADER_FILES "${SPEEX_HEADER_DIR}/*.h")
 
 # Build
 add_subdirectory(libspeex)
+
+# Install
+install(TARGETS speex LIBRARY DESTINATION lib)
+install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h")
