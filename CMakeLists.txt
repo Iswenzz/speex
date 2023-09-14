@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(speex VERSION 1.2.1 LANGUAGES C)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_INIT} -g -O2 -fvisibility=hidden -Wall")
 set(CMAKE_STATIC_LIBRARY_PREFIX "lib")
-set(CMAKE_C_FLAGS "-g -O2 -fvisibility=hidden -Wall")
 add_definitions(-DHAVE_CONFIG_H)
 
 # Macros
