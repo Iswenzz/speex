@@ -18,6 +18,29 @@ file(GLOB_RECURSE SPEEX_HEADER_FILES "${SPEEX_HEADER_DIR}/*.h")
 # Build
 add_subdirectory(libspeex)
 
+target_include_directories(speex INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include/speex>)
+
 # Install
-install(TARGETS speex LIBRARY DESTINATION lib)
+install(TARGETS speex EXPORT speexTargets LIBRARY DESTINATION lib)
 install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h")
+
+# Package
+include(CMakePackageConfigHelpers)
+
+export(EXPORT speexTargets
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/speexTargets.cmake"
+    NAMESPACE speex::)
+
+configure_package_config_file(cmake/speexConfig.cmake.in
+	"${CMAKE_CURRENT_BINARY_DIR}/speexConfig.cmake"
+	INSTALL_DESTINATION lib/cmake/speex)
+
+install(EXPORT speexTargets
+    FILE speexTargets.cmake
+    NAMESPACE speex::
+    DESTINATION lib/cmake/speex)
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/speexConfig.cmake"
+    DESTINATION lib/cmake/speex)

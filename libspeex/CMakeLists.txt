@@ -8,5 +8,4 @@ add_library(speex STATIC
 	${SPEEX_LIB_HEADER_FILES}
 	${SPEEX_LIB_LIBRARY_FILES})
 
-target_link_libraries(speex PUBLIC ${CONAN_LIBS})
-target_include_directories(speex PUBLIC ${PROJECT_SOURCE_DIR} ${SPEEX_HEADER_DIR})
+target_include_directories(speex PRIVATE ${PROJECT_SOURCE_DIR} ${SPEEX_HEADER_DIR})
